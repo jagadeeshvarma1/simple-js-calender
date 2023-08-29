@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font-family: Verdana;
+            }
+            .calender{
+                display:grid;
+                grid-template-columns: repeat(7, 1fr);
+                border: 1px solid #ccc;
+                height: 70vh;
+            }
+            .day{
+                border: 1px solid #ccc;
+                padding: 5px;
+                text-align: center;
+            }
+        </style>
+        <title>calender</title>
+    </head>
+    <body>
+        <center>
+        <h2> Simple Date Calender</h2></center>
+        <div class="calender" id="calender"></div>
+        <script>
+            const calenderContainer = document.getElementById("calender");
+
+            function createCalender(year,month){
+                const daysInMonth = new Date(year,month+1,0).getDate();
+                const firstDayOfWeek = new Date(year,month,1).getDay();
+                let calenderHTML ="";
+
+                for(let i=0; i< firstDayOfWeek; i++){
+                    calenderHTML += "<div class='day'></div>"; 
+                }
+
+                for(let day=1; day <=daysInMonth; day++){
+                    calenderHTML +=`<div class='day'>${day}</div>`;
+                }
+                calenderContainer.innerHTML = calenderHTML;
+            }
+
+            const currentDate =new Date();
+            createCalender(currentDate.getFullYear(), currentDate.getMonth());
+        </script>
+    </body>
+</html>
